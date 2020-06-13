@@ -8,10 +8,10 @@ At time of completion, I was able to run a node project (using expo) and a pytho
 Final disk usage is under 7GB.
 
 ### Checklist
-shell: zsh
-python version management: pyenv
-node version management: asdf
-editor: spacemacs
+- shell: zsh
+- python version management: pyenv
+- node version management: asdf
+- editor: spacemacs
 
 ### Prerequisites
 You should know:
