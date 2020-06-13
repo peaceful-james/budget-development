@@ -499,3 +499,5 @@ If this all works OK for you and you like it, you can go a step further and put 
 ```
 export EDITOR=em
 ```
+
+Disclaimer: headless spacemacs can look kind of bad, especially in modes with lots of colour formatting, e.g. markdown-mode.
