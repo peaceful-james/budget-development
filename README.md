@@ -107,17 +107,26 @@ RPS1='$(git_custom_status) $SEMAPHORE_TIME'
 # When this is done, restart the pi. Continue after restarting and opening new shell.
 
 ##### PART 2 - python + pyenv
+
+```
 $ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 $ git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+```
 
 ##### PART 3 - asdf + node
+
+```
 $ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 $ asdf plugin-add nodejs
+```
 
 ##### PART 4 - spacemacs
+
+```
 $ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 $ cd .emacs.d
 $ git checkout develop
+```
 
 ##### PART 5 - ensure shell knows about pyenv and asdf
 
