@@ -248,7 +248,7 @@ and enable line-numbers:
    dotspacemacs-line-numbers t
 ```
 
-Save the config file with `SPACE, F, S` and quit emacs with `SPACE, q, Q`.
+Save the config file with `SPACE, f, s` and quit emacs with `SPACE, q, Q`.
 
 ##### PART 9 - make spacemacs fast and easy
 
