@@ -448,6 +448,7 @@ You can make your own aliases as you wish. Here are some of mine:
 alias u="update_everything"
 alias s="screen -dRR"
 alias b="chromium-browser $@"
+alias lock="/usr/bin/dm-tool lock"   # locks the screen
 ```
 ##### PART 13 (OPTIONAL)- hide the ugly "decoration" bar at the top of windows (get it back using alt+space, d):
 
