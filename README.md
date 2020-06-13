@@ -248,6 +248,15 @@ and enable line-numbers:
    dotspacemacs-line-numbers t
 ```
 
+and disable lockfile creation. This is optional but if you don't do it then you will see errors when, e.g. running a node project, since the file watcher will try to use the "lockfiles" which are ephemeral (lockfiles are auto-save files).
+So add this line to the `user-config` section:
+
+```
+  (setq create-lockfiles nil)
+```
+
+This 
+
 Save the config file with `SPACE, f, s` and quit emacs with `SPACE, q, Q`.
 
 ##### PART 9 - make spacemacs fast and easy
