@@ -1,6 +1,6 @@
 # Budget Development
 
-### Guide to setting up do python + JS development on a raspberry pi (raspbian, but should work with other OS, e.g. lubuntu, kali).
+### Guide to setting up python + javascript development environment on a raspberry pi (raspbian, but should work with other OS, e.g. lubuntu, kali).
 
 I did all this on a Raspberry Pi 4, Model B, with a 32GB SD card.
 
@@ -255,7 +255,7 @@ and add some useful layers:
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(python
-     javascript
+     (javascript :variables js-indent-level 2)
      typescript
      tide
      html
@@ -309,15 +309,14 @@ $ pip install --upgrade pip     # not necessary but nice to do
 Example creating venv using pyenv and using pyscaffold:
 
 ```
-$ mkdir hyu
-$ cd hyu
-$ pyenv virtualenv 3.8-dev hyu
-$ pyenv local hyu
+$ cd
+$ mkdir my-first-project
+$ cd my-first-project
+$ pyenv virtualenv 3.8-dev my-first-backend
+$ pyenv local my-first-backend
 $ pip install ipython mypy pyscaffold
-$ putup my_proj   # unfortunately this creates the project in a sub-directory
-$ mv my_proj/* .  # move things out of the sub-dir
-$ mv my_proj/.* .  # move things out of the sub-dir
-$ rmdir my_proj   # remove the generated sub-dir
+$ putup my-first-backend
+$ cd my-first-backend 
 $ pip install -r requirements.txt
 ```
 
@@ -327,6 +326,8 @@ $ pip install -r requirements.txt
 $ asdf install nodejs 14.4.0
 $ asdf global nodejs 14.4.0
 $ npm install -g expo expo-cli typescript tslint tern eslint babel-eslint eslint-plugin-react js-beautify prettier
+$ cd ~/my-first-project
+$ npx create-react-app my-first-frontend
 ```
 
 ##### PART 12 - using screen
