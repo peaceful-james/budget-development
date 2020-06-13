@@ -326,7 +326,7 @@ $ pip install -r requirements.txt
 ```
 $ asdf install nodejs 14.4.0
 $ asdf global nodejs 14.4.0
-$ npm install -g expo expo-cli typescript tslint
+$ npm install -g expo expo-cli typescript tslint tern eslint babel-eslint eslint-plugin-react js-beautify prettier
 ```
 
 ##### PART 12 - using screen
