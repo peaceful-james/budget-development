@@ -146,87 +146,41 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 
-##### PART 6 (OPTIONAL) - alias for opening things from terminal
-This alias is handy for opening things from the terminal.
+##### PART 6 - get used to pyenv
+
+Example choosing global (default) python version:
 
 ```
-$ vi ~/.zshrc
-```
-add this at the end:
-
-```
-alias o="xdg-open $@"
+$ pyenv install 3.8-dev   # installs python-3.8
+$ pyenv global 3.8-dev    # sets default python version to 3.8
+$ pip install --upgrade pip     # not necessary but nice to do
 ```
 
-##### PART 7 (OPTIONAL)- hide the ugly "decoration" bar at the top of windows (get it back using alt+space, d):
+Example creating venv using pyenv and using pyscaffold:
 
 ```
-$ vi ~/.config/openbox/lxde-pi-rc.xml
+$ cd
+$ mkdir my-first-project
+$ cd my-first-project
+$ pyenv virtualenv 3.8-dev my-first-backend
+$ pyenv local my-first-backend
+$ pip install ipython mypy pyscaffold
+$ putup my-first-backend
+$ cd my-first-backend 
+$ pip install -r requirements.txt
 ```
 
-Here is all of mine, you just need the `<applications>` section
+##### PART 7 - get used to asdf
 
 ```
-<?xml version="1.0"?>
-<openbox_config>
-    <theme>
-        <font place="ActiveWindow">
-            <name>PibotoLt
-            </name>
-            <size>12
-            </size>
-            <weight>Normal
-            </weight>
-            <slant>Normal
-            </slant>
-        </font>
-        <font place="InactiveWindow">
-            <name>PibotoLt
-            </name>
-            <size>12
-            </size>
-            <weight>Normal
-            </weight>
-            <slant>Normal
-            </slant>
-        </font>
-        <invHandleWidth>10
-        </invHandleWidth>
-        <titleColor>#000000
-        </titleColor>
-        <textColor>#00f50e
-        </textColor>
-    </theme>
-    <applications>  
-        <application class="*">
-            <maximized>true</maximized>
-            <decor>no</decor>
-        </application>
-    </applications>
-</openbox_config>
+$ asdf install nodejs 14.4.0
+$ asdf global nodejs 14.4.0
+$ npm install -g expo expo-cli typescript tslint tern eslint babel-eslint eslint-plugin-react js-beautify prettier
+$ cd ~/my-first-project
+$ npx create-react-app my-first-frontend
 ```
 
-##### PART 8 (OPTIONAL) - hide the ugly menu bars from window
-
-```
-$ vi /home/pi/.config/lxterminal/lxterminal.conf
-```
-
-change this line:
-
-```
-hidemenubar=false
-```
-
-to this:
-
-```
-hidemenubar=true
-```
-
-(That line belongs in the `[general]` section.)
-
-##### PART 9 - use spacemacs:
+##### PART 8 - using spacemacs:
 
 ```
 $ emacs
@@ -296,118 +250,7 @@ and enable line-numbers:
 
 Save the config file with `SPACE, F, S` and quit emacs with `SPACE, q, Q`.
 
-##### PART 10 - get used to pyenv
-
-Example choosing global (default) python version:
-
-```
-$ pyenv install 3.8-dev   # installs python-3.8
-$ pyenv global 3.8-dev    # sets default python version to 3.8
-$ pip install --upgrade pip     # not necessary but nice to do
-```
-
-Example creating venv using pyenv and using pyscaffold:
-
-```
-$ cd
-$ mkdir my-first-project
-$ cd my-first-project
-$ pyenv virtualenv 3.8-dev my-first-backend
-$ pyenv local my-first-backend
-$ pip install ipython mypy pyscaffold
-$ putup my-first-backend
-$ cd my-first-backend 
-$ pip install -r requirements.txt
-```
-
-##### PART 11 - get used to asdf
-
-```
-$ asdf install nodejs 14.4.0
-$ asdf global nodejs 14.4.0
-$ npm install -g expo expo-cli typescript tslint tern eslint babel-eslint eslint-plugin-react js-beautify prettier
-$ cd ~/my-first-project
-$ npx create-react-app my-first-frontend
-```
-
-##### PART 12 - using screen
-
-Overwrite ~/.screenrc with this content (remaps default ctrl+a to ctrl+space):
-
-```
-shell "/bin/zsh"
-
-#from https://serverfault.com/questions/257975/how-to-check-if-im-in-screen-session
-# caption always "%{= kc}Screen session on %H (system load: %l)%-28=%{= .m}%D %d.%m.%Y %0c"
-
-#from https://lizdenys.com/journal/articles/understanding-gnu-screens-captions.html
-# caption always '%{= kw}[ %{y}%H%{-} ][ %= %-Lw%{+b M}%n%f* %t%{-}%+LW %= ][ %{r}%l%{-} ][ %{c}%c%{-} ]'
-# caption always '%{= kw}[ %= %-Lw%{+b M}%n%f* %t%{-}%+LW %= ][ %{r}%l%{-} ][ %{c}%c%{-} ]'
-
-#https://serverfault.com/questions/3740/what-are-useful-screenrc-settings
-# THIS IS THE PRETTY BIT
-#change the hardstatus settings to give an window list at the bottom of the                                                                        
-##screen, with the time and date and with the current window highlighted                                                                            
-hardstatus             alwayslastline                                                                                                                          
-#hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
-# hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
-hardstatus string '%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
-
-escape ^@@
-
-defscrollback 100000
-
-altscreen on
-
-rendition so =06
-rendition so km
-caption string "%{03} "
-```
-
-I left in some commented-out config for the curious/brave. I don't know if it works.
-You should run screen with this command:
-
-```
-screen -dRR
-```
-
-In screen, use these commands:
-
-```
-ctrl+space, ?    # help
-ctrl+space, c    # creates a new window
-ctrl+space, "    # lists all windows
-ctrl+space, 4    # switch to window 4 (for example)
-ctrl+space, s    # split horizontally
-ctrl+space, |    # split vertically
-ctrl+space, tab    # move to next window (when split)
-ctrl+space, Q    # fullscreen current window
-```
-
-##### PART 13 - know how to update everything
-
-```
-$ sudo apt update -y
-$ sudo apt upgrade -y
-$ cd ~/.pyenv && git fetch --all && git pull
-$ cd ~/.pyenv/plugins/pyenv-virtualenv && git fetch --all && git pull
-$ cd ~/.asdf && git fetch --all && git pull
-$ cd ~/.emacs.d && git fetch --all && git pull
-$ asdf plugin-update --all
-```
-
-It is wise to make your own update-everything function in your .zshrc.
-For example:
-
-```
-function update_everything() {
-  sudo apt update -y
-  sudo apt updgrade -y
-  # etc. etc. add your own stuff
-}
-```
-
-##### PART 14 - make spacemacs fast and easy
+##### PART 9 - make spacemacs fast and easy
 
 For some understanding, you can run emacs in daemon mode, where it has a server and client. The client command is `emacsclient`. This `emacsclient` command has a `-a` flag which will start the server if it doesn't exist.
 
@@ -502,3 +345,166 @@ export EDITOR=em
 ```
 
 Disclaimer: headless spacemacs can look kind of bad, especially in modes with lots of colour formatting, e.g. markdown-mode.
+
+##### PART 10 - using screen
+
+Overwrite ~/.screenrc with this content (remaps default ctrl+a to ctrl+space):
+
+```
+shell "/bin/zsh"
+
+#from https://serverfault.com/questions/257975/how-to-check-if-im-in-screen-session
+# caption always "%{= kc}Screen session on %H (system load: %l)%-28=%{= .m}%D %d.%m.%Y %0c"
+
+#from https://lizdenys.com/journal/articles/understanding-gnu-screens-captions.html
+# caption always '%{= kw}[ %{y}%H%{-} ][ %= %-Lw%{+b M}%n%f* %t%{-}%+LW %= ][ %{r}%l%{-} ][ %{c}%c%{-} ]'
+# caption always '%{= kw}[ %= %-Lw%{+b M}%n%f* %t%{-}%+LW %= ][ %{r}%l%{-} ][ %{c}%c%{-} ]'
+
+#https://serverfault.com/questions/3740/what-are-useful-screenrc-settings
+# THIS IS THE PRETTY BIT
+#change the hardstatus settings to give an window list at the bottom of the                                                                        
+##screen, with the time and date and with the current window highlighted                                                                            
+hardstatus             alwayslastline                                                                                                                          
+#hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+# hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+hardstatus string '%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+
+escape ^@@
+
+defscrollback 100000
+
+altscreen on
+
+rendition so =06
+rendition so km
+caption string "%{03} "
+```
+
+I left in some commented-out config for the curious/brave. I don't know if it works.
+You should run screen with this command:
+
+```
+screen -dRR
+```
+
+In screen, use these commands:
+
+```
+ctrl+space, ?    # help
+ctrl+space, c    # creates a new window
+ctrl+space, "    # lists all windows
+ctrl+space, 4    # switch to window 4 (for example)
+ctrl+space, s    # split horizontally
+ctrl+space, |    # split vertically
+ctrl+space, tab    # move to next window (when split)
+ctrl+space, Q    # fullscreen current window
+```
+
+##### PART 11 - know how to update everything
+
+It is wise and efficient to make your own update_everything function in your .zshrc.
+For example:
+
+```
+function update_everything() {
+    sudo apt update -y
+    sudo apt upgrade -y
+    cd ~/.pyenv && git fetch --all && git pull
+    cd ~/.pyenv/plugins/pyenv-virtualenv && git fetch --all && git pull
+    cd ~/.asdf && git fetch --all && git pull
+    cd ~/.emacs.d && git fetch --all && git pull
+    asdf plugin-update --all
+    cd
+}
+```
+
+##### PART 12 (OPTIONAL) - useful alias for opening things from terminal
+This alias is handy for opening things from the terminal.
+
+```
+$ vi ~/.zshrc
+```
+add this at the end:
+
+```
+alias o="xdg-open $@"
+```
+
+The `$@` is a special variable which means "all the arguments".
+Similarly, `$1` is the first argument, `$2` is the second, etc.
+
+You can make your own aliases as you wish. Here are some of mine:
+
+```
+alias u="update_everything"
+alias s="screen -dRR"
+alias b="chromium-browser $@"
+```
+##### PART 13 (OPTIONAL)- hide the ugly "decoration" bar at the top of windows (get it back using alt+space, d):
+
+```
+$ vi ~/.config/openbox/lxde-pi-rc.xml
+```
+
+Here is all of mine, you just need the `<applications>` section
+
+```
+<?xml version="1.0"?>
+<openbox_config>
+    <theme>
+        <font place="ActiveWindow">
+            <name>PibotoLt
+            </name>
+            <size>12
+            </size>
+            <weight>Normal
+            </weight>
+            <slant>Normal
+            </slant>
+        </font>
+        <font place="InactiveWindow">
+            <name>PibotoLt
+            </name>
+            <size>12
+            </size>
+            <weight>Normal
+            </weight>
+            <slant>Normal
+            </slant>
+        </font>
+        <invHandleWidth>10
+        </invHandleWidth>
+        <titleColor>#000000
+        </titleColor>
+        <textColor>#00f50e
+        </textColor>
+    </theme>
+    <applications>  
+        <application class="*">
+            <maximized>true</maximized>
+            <decor>no</decor>
+        </application>
+    </applications>
+</openbox_config>
+```
+
+##### PART 14 (OPTIONAL) - hide the ugly menu bars from window
+
+```
+$ vi /home/pi/.config/lxterminal/lxterminal.conf
+```
+
+change this line:
+
+```
+hidemenubar=false
+```
+
+to this:
+
+```
+hidemenubar=true
+```
+
+(That line belongs in the `[general]` section.)
+
