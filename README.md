@@ -382,3 +382,120 @@ ctrl+space, |    # split vertically
 ctrl+space, tab    # move to next window (when split)
 ctrl+space, Q    # fullscreen current window
 ```
+
+##### PART 13 - know how to update everything
+
+```
+$ sudo apt update -y
+$ sudo apt upgrade -y
+$ cd ~/.pyenv && git fetch --all && git pull
+$ cd ~/.pyenv/plugins/pyenv-virtualenv && git fetch --all && git pull
+$ cd ~/.asdf && git fetch --all && git pull
+$ cd ~/.emacs.d && git fetch --all && git pull
+$ asdf plugin-update --all
+```
+
+It is wise to make your own update-everything function in your .zshrc.
+For example:
+
+```
+function update_everything() {
+  sudo apt update -y
+  sudo apt updgrade -y
+  # etc. etc. add your own stuff
+}
+```
+
+##### PART 14 - make spacemacs fast and easy
+
+For some understanding, you can run emacs in daemon mode, where it has a server and client. The client command is `emacsclient`. This `emacsclient` command has a `-a` flag which will start the server if it doesn't exist.
+
+So here is how to use spacemacs most efficiently:
+
+Edit the `~/.spacemacs` file (or press `SPC, f, e, d` to edit it in spacemacs).
+Change this line:
+
+```
+   dotspacemacs-persistent-server nil
+```
+
+to this:
+
+```
+   dotspacemacs-persistent-server t
+```
+
+Change this line:
+
+```
+   dotspacemacs-enable-server nil
+```
+
+to this:
+
+```
+   dotspacemacs-enable-server t
+```
+
+And finally add this line to the `user-config` section:
+
+```
+  (evil-leader/set-key "q q" 'spacemacs/frame-killer)
+```
+
+Now quit emacs `SPC, q, Q` and put two new binaries in `/bin` or `/usr/bin` or wherever you like:
+
+```
+sudo vi /bin/em
+```
+
+Just put in this line:
+
+```
+emacsclient -a '' -nw $@
+```
+
+and similarly make a second bin file:
+
+```
+sudo vi /bin/emw
+```
+
+Just put in this line:
+
+```
+emacsclient -a '' -nc $@
+```
+
+Make both of these executable:
+
+```
+sudo chmod +x /bin/em
+sudo chmod +x /bin/emw
+```
+
+From now on, if you want to open emacs, use `emw` and `em`.
+
+For example, to edit a file in the proper emacs app, you would do:
+
+```
+emw ~/work/project_42/src/setup.py
+```
+
+and to edit a file headlessly (in your terminal), you would do:
+
+```
+em ~/.zshrc
+```
+
+These will open super fast because the emacs server is constantly running as a daemon (a.k.a background process).
+
+In both ways, you close the "frame" without killing emacs by using the `frame-killer` command which we mapped to `SPC, q, q` (by default it is `SPC, F, d` which is annoying to remember and type).
+
+You can still kill emacs fully using the same `SPC, q, Q` we used above.
+
+If this all works OK for you and you like it, you can go a step further and put this in your .zshrc to make `em` the default editor (e.g. for editing `git commit` messages):
+
+```
+export EDITOR=em
+```
