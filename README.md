@@ -165,7 +165,7 @@ $ mkdir my-first-project
 $ cd my-first-project
 $ pyenv virtualenv 3.8-dev my-first-backend
 $ pyenv local my-first-backend
-$ pip install jedi flake8 isort yapf python-language-server mypy importmagic epc  # these libs make spacemacs work well
+$ pip install jedi flake8 isort yapf 'python-language-server[all]' mypy importmagic epc  # these libs make spacemacs work well
 $ pip install ipython pyscaffold selenium numpy # this is a random set of popular libs
 $ putup my-first-backend
 $ cd my-first-backend 
