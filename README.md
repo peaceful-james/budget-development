@@ -165,7 +165,7 @@ $ mkdir my-first-project
 $ cd my-first-project
 $ pyenv virtualenv 3.8-dev my-first-backend
 $ pyenv local my-first-backend
-$ pip install jedi flake8 isort yapf mypy importmagic epc  # these libs make spacemacs work well
+$ pip install pylint jedi flake8 isort yapf mypy importmagic epc  # these libs make spacemacs work well
 $ pip install pytest ipython pyscaffold selenium numpy pandas matplotlib # this is a random set of popular libs
 $ putup my-first-backend
 $ cd my-first-backend 
@@ -248,6 +248,19 @@ and enable line-numbers:
 
 ```
    dotspacemacs-line-numbers t
+```
+
+and set scroll margin to 10 lines in the `user-config` section:
+
+```
+  (setq-default scroll-margin 10)
+```
+
+and enable flycheck globally and use pylint and mypy as flycheck "checkers" in the `user-config` section:
+
+```
+  (global-flycheck-mode 1)
+  (flycheck-add-next-checker 'python-pylint 'python-mypy t)
 ```
 
 and disable lockfile creation. This is optional but if you don't do it then you will see errors when, e.g. running a node project, since the file watcher will try to use the "lockfiles" which are ephemeral (lockfiles are auto-save files).
