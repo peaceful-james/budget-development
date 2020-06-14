@@ -423,6 +423,7 @@ function update_everything() {
     cd ~/.pyenv/plugins/pyenv-virtualenv && git fetch --all && git pull
     cd ~/.asdf && git fetch --all && git pull
     cd ~/.emacs.d && git fetch --all && git pull
+    cd ~/.oh-my-zsh && git fetch --all && git pull
     asdf plugin-update --all
     cd
 }
