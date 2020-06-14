@@ -519,3 +519,18 @@ hidemenubar=true
 
 (That line belongs in the `[general]` section.)
 
+
+##### PART 15 (OPTIONAL) - force hdmi detection after boot
+
+In default setup, the Pi only detects HDMI if plugged in before boot.
+Let HDMI work after boot by doing:
+
+```
+sudo vi /boot/config.txt
+```
+
+and uncomment (remove the `#` symbol at the start of the line) this:
+
+```
+hdmi_force_hotplug=1
+```
