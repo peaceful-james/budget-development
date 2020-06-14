@@ -222,7 +222,7 @@ and add some useful layers:
      multiple-cursors
      treemacs
      ;; better-defaults
-     ;; lsp
+     ;; lsp  ;; I don't include this layer because it doesn't do autocompletion in python mode, for me
      ;; markdown
      ;; org
      ;; (shell :variables
