@@ -29,7 +29,7 @@ $ sudo apt update -y
 $ sudo apt upgrade -y
 $ sudo apt install gcc make curl libffi-dev pkg-config libz-dev libbz2-dev libsqlite3-dev libncurses-dev libexpat1-dev libssl-dev libgdbm-dev libgc-dev liblzma-dev bzip2 openssl zlib1g-dev libreadline-dev
 $ sudo apt install dirmngr emacs zsh screen ripgrep git
-$ sudo apt install tk-dev chromedriver   # optional stuff that is often good to have
+$ sudo apt install tk-dev chromedriver libreoffice-draw   # optional stuff that is often good to have
 ```
 
 ##### PART 1 - the shell (oh-my-zsh)
@@ -450,7 +450,11 @@ alias u="update_everything"
 alias s="screen -dRR"
 alias b="chromium-browser $@"
 alias lock="/usr/bin/dm-tool lock"   # locks the screen
+alias beep="aplay /usr/lib/libreoffice/share/gallery/sounds/apert.wav 2>/dev/null"   # makes a nice sound.
 ```
+
+I use that beep alias after long-running commands, so I know they're finished, e.g. `pip install matplotlib; beep`. The `2>/dev/null` just pipes error output to /dev/null which is effectively a black hole where bits go to stop existing.
+
 ##### PART 13 (OPTIONAL)- hide the ugly "decoration" bar at the top of windows (get it back using alt+space, d):
 
 ```
