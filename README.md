@@ -597,6 +597,12 @@ Edit that file and find the `disabled` list under the `[MESSAGES CONTROL]` secti
 
 Don't forget to put a comma after the previous line! This will ignore warnings about missing docstrings, which happens all the time.
 
+You can add pylint plugins, e.g. for django projects (django has sloppy AF typing):
+
+```
+load-plugins=pylint_django
+```
+
 
 ##### PART 18 (OPTIONAL) - configure mypy
 
