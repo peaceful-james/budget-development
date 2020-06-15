@@ -568,3 +568,14 @@ and uncomment (remove the `#` symbol at the start of the line) this:
 ```
 hdmi_force_hotplug=1
 ```
+
+##### PART 16 (OPTIONAL) - postgres
+
+```
+sudo apt install libpq-dev
+asdf plugin-add postgres
+asdf install postgres 12.3  # or whatever version you want
+asdf global postgres 12.3
+pyenv shell my-first-backend
+pip install psycopg2 pgcli   # now use pgcli instead of psql
+```
