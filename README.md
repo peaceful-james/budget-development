@@ -595,4 +595,4 @@ Edit that file and find the `disabled` list under the `[MESSAGES CONTROL]` secti
         missing-docstring
 ```
 
-This will ignore warnings about missing docstrings, which happens all the time.
+Don't forget to put a comma after the previous line! This will ignore warnings about missing docstrings, which happens all the time.
