@@ -224,8 +224,8 @@ and add some useful layers:
              python-test-runner 'pytest
              python-backend 'anaconda  ;; the default backend, lsp, is very bad atm
              python-indent-offset 4
-             python-format-on-save t
-             python-sort-imports-on-save t
+             ;; python-format-on-save t
+             ;; python-sort-imports-on-save t
              )
      html
      (javascript :variables js-indent-level 2)
