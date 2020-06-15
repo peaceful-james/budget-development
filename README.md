@@ -596,3 +596,31 @@ Edit that file and find the `disabled` list under the `[MESSAGES CONTROL]` secti
 ```
 
 Don't forget to put a comma after the previous line! This will ignore warnings about missing docstrings, which happens all the time.
+
+
+##### PART 18 (OPTIONAL) - configure mypy
+
+Generate a global mypy config file like this:
+
+```
+touch ~/.mypy.ini
+```
+
+Edit that file and put in these contents (for example):
+
+```
+# Global options:
+
+[mypy]
+warn_return_any = True
+warn_unused_configs = True
+
+# Per-module options:
+
+[mypy-django.db]
+ignore_missing_imports = True
+```
+
+See these links for more info:
+https://mypy.readthedocs.io/en/stable/config_file.html#config-file
+https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-type-hints-for-third-party-library
