@@ -210,19 +210,32 @@ and add some useful layers:
 ```
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(python
-     (javascript :variables js-indent-level 2)
-     typescript
-     tide
-     html
-     auto-completion
-     emacs-lisp
-     git
+   '(git
      helm
      multiple-cursors
      treemacs
+     emacs-lisp
+     (auto-completion :variables company-idle-delay 0.1
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-tab-key-behavior 'cycle
+                      :disabled-for org)
+     (python :variables
+             python-test-runner 'pytest
+             python-backend 'anaconda  ;; the default backend, lsp, is very bad atm
+             python-indent-offset 4
+             python-format-on-save t
+             python-sort-imports-on-save t
+             )
+     html
+     (javascript :variables js-indent-level 2)
+     react
+     tide
+     typescript
+     markdown
+     csv
+     ;; lsp
      ;; better-defaults
-     ;; lsp  ;; I don't include this layer because it doesn't do autocompletion in python mode, for me
      ;; markdown
      ;; org
      ;; (shell :variables
