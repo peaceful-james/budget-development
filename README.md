@@ -579,3 +579,20 @@ asdf global postgres 12.3
 pyenv shell my-first-backend
 pip install psycopg2 pgcli   # now use pgcli instead of psql
 ```
+
+
+##### PART 17 (OPTIONAL) - configure pylint
+
+Generate a global pylint config file like this:
+
+```
+pylint --generate-rcfile > ~/.pylintrc
+```
+
+Edit that file and find the `disabled` list under the `[MESSAGES CONTROL]` section. Add this line to the list:
+
+```
+        missing-docstring
+```
+
+This will ignore warnings about missing docstrings, which happens all the time.
