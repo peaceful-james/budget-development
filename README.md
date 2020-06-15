@@ -121,6 +121,8 @@ $ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 $ asdf plugin-add nodejs
 ```
 
+Note that `asdf` can and should be used to install a _lot_ of things (elixir, erlang, postgres, sqlite, etc.)
+
 ##### PART 4 - spacemacs
 
 ```
