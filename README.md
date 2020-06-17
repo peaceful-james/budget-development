@@ -1,5 +1,8 @@
 # Budget Development
 
+A simpler version is here:
+https://medium.com/@peaceful_james/python-javascript-development-on-a-raspberry-pi-4-model-b-d778aa2bbb
+
 ### Guide to setting up python + javascript development environment on a raspberry pi (raspbian, but should work with other OS, e.g. lubuntu, kali).
 
 I did all this on a Raspberry Pi 4, Model B, with a 32GB SD card.
