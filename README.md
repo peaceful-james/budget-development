@@ -814,3 +814,61 @@ end
 
 alias CustomRootModuleNoMappingCollision, as: Hyu
 ```
+
+
+##### PART 20 - Git config
+
+The first time you try using git on a new machine, it will ask who you are. In particular, it will ask you to provide a name and an email. When you give it this information, it puts it in `~/.gitconfig`. This is not the right set-up for people who have multiple git accounts, e.g. a github account and a gitlab account, or a personal account and a work acount. You might use different emails for different git accounts so here is a `~/.gitconfig` to solve that:
+
+```
+[includeIf "gitdir:~/github-personal/"]
+	path = ~/github-personal/.gitconfig
+
+[includeIf "gitdir:~/github-work/"]
+	path = ~/github-work/.gitconfig
+
+[includeIf "gitdir:~/gitlab/"]
+	path = ~/gitlab/.gitconfig
+```
+
+What is happening here is we have told git about 3 different directories, each containing their own `.gitconfig` file.
+
+So you would just make those directories and their `.gitconfig` files:
+
+```
+$ mkdir ~/github-personal
+$ mkdir ~/github-work
+$ mkdir ~/gitlab
+$ touch ~/github-personal/.gitconfig
+$ touch ~/github-work/.gitconfig
+$ touch ~/gitlab/.gitconfig
+```
+
+and write a separate config for each directory, e.g., for the `github-personal` one:
+
+```
+[user]
+        email = chilling@home.fakemail
+        name = Tres Chill
+```
+
+and for the `github-work` one:
+
+```
+[user]
+        email = serious@work.moneymoneymoney
+        name = Mr Professional
+```
+
+which is super nice because it means that when you are not in one of these 3 directories, e.g. you are just in your home folder, and you pull some repository to play with it, that pull won't be done using any name or email.
+
+Note that if you are going with a set-up like this then you should have a separate SSH key for each git account. For example, let's create an ssh key just for our "work" github account:
+
+```
+$ ssh-keygen -t ed25519 -C "github-work" -f ~/.ssh/id_github-work
+```
+
+It will ask for a passphrase to be entered twice. Use a good one.
+You would then just log in to github in the browser, find the security/keys settings and add the _public_ key. This should be `~/.ssh/id_github-work.pub`.
+
+Using separate git configs (with no global git config) and separate, clearly-named ssh keys is good.
