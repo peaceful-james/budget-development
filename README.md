@@ -672,7 +672,7 @@ Add `dap` and `elixir` to the spacemacs layers:
              elixir-ls-path "~/elixir-ls/release")
 ```
 
-Add this madness to the `.spacemacs` file:
+Add this stuff to the `.spacemacs` file in the `user-config` section:
 
 ```
 ;; LSP STUFF
