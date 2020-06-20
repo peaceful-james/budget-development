@@ -872,3 +872,32 @@ It will ask for a passphrase to be entered twice. Use a good one.
 You would then just log in to github in the browser, find the security/keys settings and add the _public_ key. This should be `~/.ssh/id_github-work.pub`.
 
 Using separate git configs (with no global git config) and separate, clearly-named ssh keys is good.
+
+Finally, you might want to have a "global gitignore". You might know that most git projects have a `.gitignore` file, which lists directories and file-name patterns that git should ignore. For example, a common one is `node_modules`, the directory that `npm install` creates to hold _all_ of the node libraries a project uses. Since this is usually very large, and changes often, it is wasteful and pointless to commit and push `node_modules`, since anyone can generate their own with `npm install`. You can tell git to use a "global gitignore" file which will apply everywhere.
+
+For example, if you are using `pyenv` and you pull a python repository written by a team who don't use pyenv, then when you create and assign a venv for that project, git will see the `.python-version` file as an untracked file. You could add `.python-version` to the project's gitignore but you're still imposing your own tools onto a pre-existing project/team. It is generally more polite to globally gitignore your own tools' files.
+
+Configure the global gitignore path like this:
+```
+$ git config --global core.excludesfile '~/.gitignore-global'
+```
+
+Notice the correct name  for a global gitignore is `core.excludesfile`.
+
+Note that you can call that file whatever you want. I like to call it `.gitignore-global`. Here's a simple example:
+
+```
+# Configure git to use this with:
+# $ git config --global core.excludesfile '~/.gitignore-global'
+
+# The pyenv python-version file
+.python-version
+
+# LSP dialyzer-generated directory
+.elixir_ls
+
+# projectile file used by projectile/emacs
+.projectile
+```
+
+WIth this setup, I can make a `.projectile` file in any project, or run `pyenv virtualenv 2.7-dev new-team-project; pyenv local new-team-project` to make a `.python-version` file in any project and git will ignore it. Very clean and polite.
