@@ -633,3 +633,184 @@ ignore_missing_imports = True
 See these links for more info:
 https://mypy.readthedocs.io/en/stable/config_file.html#config-file
 https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-type-hints-for-third-party-library
+
+
+
+##### PART 19 - erlang, elixir, phoenix
+
+```
+$ cd ~/.oh-my-zsh/custom/plugins
+$ git clone https://github.com/gusaiani/elixir-oh-my-zsh.git elixir
+$ cd
+```
+
+Add `elixir` to `~/.zshrc` plugins.
+
+```
+$ . ~/.zshrc
+$ sudo apt install automake autoconf libncurses5-dev 
+$ asdf plugin-add erlang
+$ asdf plugin-add elixir
+$ asdf list-all erlang
+$ asdf list-all elixir
+$ asdf install erlang 23.0.2
+$ asdf install elixir 23.0.2
+$ gcl https://github.com/elixir-lsp/elixir-ls.git
+$ cd elixir-ls
+$ asdf local erlang 23.0.2
+$ asdf local elixir 1.10.3
+$ mix compile
+$ mix elixir_ls.release -o release
+```
+
+Add `dap` and `elixir` to the spacemacs layers:
+
+```
+     dap
+     (elixir :variables 
+          elixir-backend 'lsp
+             elixir-ls-path "~/elixir-ls/release")
+```
+
+Add this madness to the `.spacemacs` file:
+
+```
+;; LSP STUFF
+
+  (setq lsp-file-watch-ignored
+        '(".idea" ".ensime_cache" ".eunit" "node_modules"
+          ".git" ".hg" ".fslckout" "_FOSSIL_"
+          ".bzr" "_darcs" ".tox" ".svn" ".stack-work"
+          "build" "_build" "deps" "postgres-data")
+        )
+
+  (use-package lsp-mode
+    :commands lsp
+    :ensure t
+    :diminish lsp-mode
+
+  (use-package lsp-ui
+    :commands lsp-ui-mode
+    :custom-face
+    (lsp-ui-doc-background ((t (:background nil))))
+    (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
+    :bind (:map lsp-ui-mode-map
+                ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+                ([remap xref-find-references] . lsp-ui-peek-find-references)
+                ("C-c u" . lsp-ui-imenu))
+    :init
+    (setq lsp-ui-doc-enable nil
+          lsp-ui-doc-header t
+          lsp-ui-doc-include-signature t
+          lsp-ui-doc-position 'bottom
+          lsp-ui-doc-use-webkit t
+          ;; lsp-ui-doc-border (face-foreground 'default)
+
+          lsp-ui-sideline-enable nil
+          lsp-ui-sideline-ignore-duplicate t)
+    :config
+    ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
+    ;; https://github.com/emacs-lsp/lsp-ui/issues/243
+    (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
+      (setq mode-line-format nil)))
+
+  (use-package company-lsp
+    :init (setq company-lsp-cache-candidates 'auto)
+    :config (push 'company-lsp company-backends)
+    )
+  ;; this doesn't work:
+  ;; (add-hook 'projectile-after-switch-project-hook #'lsp-restart-workspace)
+
+  (require 'dap-elixir)
+  (dap-ui-mode)
+  (dap-mode)
+  (with-eval-after-load 'elixir-mode
+    (spacemacs/declare-prefix-for-mode 'elixir-mode
+      "mt" "tests" "testing related functionality")
+    (spacemacs/set-leader-keys-for-major-mode 'elixir-mode
+      "j=" 'lsp-format-buffer
+      "tb" 'exunit-verify-all
+      "ta" 'exunit-verify
+      "tk" 'exunit-rerun
+      "tt" 'exunit-verify-single))
+
+  ;; kbd macro for IEx.pry - press Space, m ,d to put in a breakpoint (like in python-mode).
+  (fset 'iex_pry
+        (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([111 114 101 113 117 105 114 101 32 73 69 120 return 73 69 120 46 112 114 121 escape] 0 "%d")) arg)))
+```
+
+
+Add this elixir goodness to `~/.zshrc` :
+
+```
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+alias mto='mix test --only $@'
+
+function parse_mix_hex_search_line() {
+    local line="$1";
+    local arr=("${(s/ /)line}")
+    echo "{:${arr[1]}, \"~> ${arr[$((#arr[@] - 2))]}\"},"
+}
+
+function mix_hex_search_formatted_output() {
+    mix hex.search $1 | grep $1  | while read line; do
+        parse_mix_hex_search_line $line
+    done
+}
+```
+
+and make a default `.iex.exs` for pleasant iex shell:
+
+```
+# from http://samuelmullen.com/articles/customizing_elixirs_iex/
+# you need to save this file as ~/.iex.exs
+
+IEx.configure(
+  colors: [
+    syntax_colors: [
+      number: :light_yellow,
+      atom: :light_cyan,
+      string: :light_black,
+      boolean: :red,
+      nil: [:magenta, :bright],
+    ],
+    ls_directory: :cyan,
+    ls_device: :yellow,
+    doc_code: :green,
+    doc_inline_code: :magenta,
+    doc_headings: [:cyan, :underline],
+    doc_title: [:cyan, :bright, :underline],
+  ],
+  default_prompt:
+  "#{IO.ANSI.green}%prefix#{IO.ANSI.reset} " <>
+    "[#{IO.ANSI.magenta}#{IO.ANSI.reset}" <>
+    "#{IO.ANSI.cyan}%counter#{IO.ANSI.reset}] >",
+  alive_prompt:
+  "#{IO.ANSI.green}%prefix#{IO.ANSI.reset} " <>
+    "(#{IO.ANSI.yellow}%node#{IO.ANSI.reset}) " <>
+    "[#{IO.ANSI.magenta}#{IO.ANSI.reset}" <>
+    "#{IO.ANSI.cyan}%counter#{IO.ANSI.reset}] >",
+  history_size: 500,
+  inspect: [
+    pretty: true,
+    limit: :infinity,
+    width: 80
+  ],
+  width: 80
+)
+
+
+defmodule CustomRootModuleNoMappingCollision do
+  # This is just to illustrate how you can have custom functions/aliases
+  # THis is particularly useful when done per-project
+  def timestamp do
+    {_date, {hour, minute, _second}} = :calendar.local_time
+    [hour, minute]
+    |> Enum.map(&(String.pad_leading(Integer.to_string(&1), 2, "0")))
+    |> Enum.join(":")
+  end
+end
+
+alias CustomRootModuleNoMappingCollision, as: Hyu
+```
