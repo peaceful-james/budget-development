@@ -760,7 +760,7 @@ function mix_hex_search_formatted_output() {
 }
 ```
 
-and make a default `.iex.exs` for pleasant iex shell:
+and make a default iex config for pleasant iex shell (save this content to `~/.iex.exs`):
 
 ```
 # from http://samuelmullen.com/articles/customizing_elixirs_iex/
