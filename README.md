@@ -871,6 +871,11 @@ $ ssh-keygen -t ed25519 -C "github-work" -f ~/.ssh/id_github-work
 It will ask for a passphrase to be entered twice. Use a good one.
 You would then just log in to github in the browser, find the security/keys settings and add the _public_ key. This should be `~/.ssh/id_github-work.pub`.
 
+Note that on a mac you might have to something like this:
+```
+ssh-add -K ~/.ssh/id_github-work
+```
+
 Using separate git configs (with no global git config) and separate, clearly-named ssh keys is good.
 
 Finally, you might want to have a "global gitignore". You might know that most git projects have a `.gitignore` file, which lists directories and file-name patterns that git should ignore. For example, a common one is `node_modules`, the directory that `npm install` creates to hold _all_ of the node libraries a project uses. Since this is usually very large, and changes often, it is wasteful and pointless to commit and push `node_modules`, since anyone can generate their own with `npm install`. You can tell git to use a "global gitignore" file which will apply everywhere.
