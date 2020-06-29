@@ -420,6 +420,8 @@ altscreen on
 rendition so =06
 rendition so km
 caption string "%{03} "
+
+ignorecase on
 ```
 
 I left in some commented-out config for the curious/brave. I don't know if it works.
@@ -659,6 +661,7 @@ $ gcl https://github.com/elixir-lsp/elixir-ls.git
 $ cd elixir-ls
 $ asdf local erlang 23.0.2
 $ asdf local elixir 1.10.3
+$ mix deps.get; mix deps.compile
 $ mix compile
 $ mix elixir_ls.release -o release
 ```
