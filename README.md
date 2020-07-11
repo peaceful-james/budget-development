@@ -288,7 +288,15 @@ So add this line to the `user-config` section:
   (setq create-lockfiles nil)
 ```
 
-This 
+Add this stuff to the `user-config` section to get some nice javascript "jump-to-definition" with tide:
+```
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (tide-hl-identifier-mode +1))
+(add-hook 'rjsx-mode-hook #'setup-tide-mode)
+(add-hook 'web-mode-hook #'setup-tide-mode)
+```
 
 Save the config file with `SPACE, f, s` and quit emacs with `SPACE, q, Q`.
 
