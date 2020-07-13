@@ -296,6 +296,12 @@ Add this stuff to the `user-config` section to get some nice javascript "jump-to
   (tide-hl-identifier-mode +1))
 (add-hook 'rjsx-mode-hook #'setup-tide-mode)
 (add-hook 'web-mode-hook #'setup-tide-mode)
+
+"Open js files in rjsx mode by default"
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+(spacemacs/set-leader-keys-for-major-mode 'rjsx-mode "g g" 'tide-jump-to-definition)
+(spacemacs/set-leader-keys-for-major-mode 'rjsx-mode "h h" 'tide-documentation-at-point)
+
 ```
 
 Save the config file with `SPACE, f, s` and quit emacs with `SPACE, q, Q`.
