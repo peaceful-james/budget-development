@@ -923,3 +923,16 @@ Note that you can call that file whatever you want. I like to call it `.gitignor
 ```
 
 WIth this setup, I can make a `.projectile` file in any project, or run `pyenv virtualenv 2.7-dev new-team-project; pyenv local new-team-project` to make a `.python-version` file in any project and git will ignore it. Very clean and polite.
+
+##### PART 21 - docker
+
+spacemacs cfg (don't forget rto add the `docker` layer):
+```
+  ;; "DOCKER/TRAMP STUFF"
+  ;; "Open Dockerfile files in dockerfile mode by default"
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+  ;; "Get SPC-f-f `/docker:' docker tramp to autocomplete names"
+  (setq docker-tramp-use-names t)
+  ;; fix tramp hanging on alpine containers as per https://github.com/emacs-pe/docker-tramp.el
+  (require 'docker-tramp-compat)
+```
