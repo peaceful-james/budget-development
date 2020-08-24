@@ -292,6 +292,7 @@ Add this stuff to the `user-config` section to get some nice javascript "jump-to
 ```
 (defun setup-tide-mode ()
   (interactive)
+  (setq create-lockfiles nil)
   (tide-setup)
   (tide-hl-identifier-mode +1))
 (add-hook 'rjsx-mode-hook #'setup-tide-mode)
@@ -303,6 +304,7 @@ Add this stuff to the `user-config` section to get some nice javascript "jump-to
 (spacemacs/set-leader-keys-for-major-mode 'rjsx-mode "h h" 'tide-documentation-at-point)
 
 ```
+Notice I have specified again about `create-lockfiles`. I noticed that `rjsx-mode` seems to re-instate default lockfile creation, which is just unpleasant when doing, e.g. docker-hosted hot-reloading.
 
 Save the config file with `SPACE, f, s` and quit emacs with `SPACE, q, Q`.
 
