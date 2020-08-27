@@ -728,10 +728,7 @@ Add this stuff to the `.spacemacs` file in the `user-config` section:
           lsp-ui-sideline-enable nil
           lsp-ui-sideline-ignore-duplicate t)
     :config
-    ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
-    ;; https://github.com/emacs-lsp/lsp-ui/issues/243
-    (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
-      (setq mode-line-format nil)))
+    )
 
   (use-package company-lsp
     :init (setq company-lsp-cache-candidates 'auto)
