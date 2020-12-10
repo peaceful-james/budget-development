@@ -35,6 +35,9 @@ $ sudo apt install dirmngr emacs zsh screen ripgrep git
 $ sudo apt install tk-dev chromedriver libreoffice-draw   # optional stuff that is often good to have
 ```
 
+Note: `apt` may only have an old version of emacs. To install a newer version, see:
+https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html
+
 ##### PART 1 - the shell (oh-my-zsh)
 ```
 $ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -44,10 +47,10 @@ $ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/instal
 $ vi ~/.zshrc
 ```
 
-Edit the zshrc to include the git plugin:
+Edit the zshrc to include the git and asdf plugins:
 
 ```
-plugins=(git)
+plugins=(git asdf)
 ```
 and set the theme to "semaphore":
 ```
@@ -890,6 +893,12 @@ You would then just log in to github in the browser, find the security/keys sett
 Note that on a mac you might have to something like this:
 ```
 ssh-add -K ~/.ssh/id_github-work
+```
+
+whereas on Linux you often need to actually start the ssh-agent manually;
+```
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_github-work
 ```
 
 Using separate git configs (with no global git config) and separate, clearly-named ssh keys is good.
