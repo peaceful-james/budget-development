@@ -694,6 +694,17 @@ Add `dap` and `elixir` to the spacemacs layers:
              elixir-ls-path "~/elixir-ls/release")
 ```
 
+Add `exunit` to additional packages to be installed;
+
+```
+   dotspacemacs-additional-packages
+   '(
+   ;; ...other stuff here
+     exunit
+     )
+
+```
+
 Add this stuff to the `.spacemacs` file in the `user-config` section:
 
 ```
