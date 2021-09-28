@@ -3,6 +3,8 @@
 A simpler version is here:
 https://medium.com/@peaceful_james/python-javascript-development-on-a-raspberry-pi-4-model-b-d778aa2bbb
 
+This README is very dense with instructions. It mostly exists as a reference for myself. Too many times have I found myself on a brand new machine with only internet access. Now I can use this guide to remind myself of the libs, tools and configs that let me get back to peaceful programming.
+
 ### Guide to setting up python + javascript development environment on a raspberry pi (raspbian, but should work with other OS, e.g. lubuntu, kali).
 
 I did all this on a Raspberry Pi 4, Model B, with a 32GB SD card.
