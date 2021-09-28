@@ -674,12 +674,12 @@ $ asdf plugin-add erlang
 $ asdf plugin-add elixir
 $ asdf list-all erlang
 $ asdf list-all elixir
-$ asdf install erlang 23.0.2
-$ asdf install elixir 23.0.2
+$ asdf install erlang 24.0.5
+$ asdf install elixir 1.12.3
 $ gcl https://github.com/elixir-lsp/elixir-ls.git
 $ cd elixir-ls
-$ asdf local erlang 23.0.2
-$ asdf local elixir 1.10.3
+$ asdf local erlang 24.0.5
+$ asdf local elixir 1.12.3
 $ mix deps.get; mix deps.compile
 $ mix compile
 $ mix elixir_ls.release -o release
