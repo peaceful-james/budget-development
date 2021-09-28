@@ -880,6 +880,9 @@ and write a separate config for each directory, e.g., for the `github-personal` 
 [user]
         email = chilling@home.fakemail
         name = Tres Chill
+
+[core]
+	sshCommand="ssh -i ~/.ssh/id_github-personal"
 ```
 
 and for the `github-work` one:
@@ -888,6 +891,9 @@ and for the `github-work` one:
 [user]
         email = serious@work.moneymoneymoney
         name = Mr Professional
+
+[core]
+	sshCommand="ssh -i ~/.ssh/id_github-work"
 ```
 
 which is super nice because it means that when you are not in one of these 3 directories, e.g. you are just in your home folder, and you pull some repository to play with it, that pull won't be done using any name or email.
@@ -912,7 +918,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_github-work
 ```
 
-You can add a ssh config that links directories to keys (save in `~/.ssh/config`):
+You can also add a ssh config that links directories to keys (save in `~/.ssh/config`):
 
 ```
 Host gitlab.com
