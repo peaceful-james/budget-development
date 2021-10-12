@@ -32,7 +32,7 @@ Open your terminal and run these things (but don't include the $ at the start of
 ```
 $ sudo apt update -y
 $ sudo apt upgrade -y
-$ sudo apt install gcc make curl libffi-dev pkg-config libz-dev libbz2-dev libsqlite3-dev libncurses-dev libexpat1-dev libssl-dev libgdbm-dev libgc-dev liblzma-dev bzip2 openssl zlib1g-dev libreadline-dev libxml2-dev
+$ sudo apt install gcc make curl libffi-dev pkg-config libz-dev libbz2-dev libsqlite3-dev libncurses-dev libexpat1-dev libssl-dev libgdbm-dev libgc-dev liblzma-dev bzip2 openssl zlib1g-dev libreadline-dev libxml2-dev libjansson-dev
 $ sudo apt install dirmngr emacs zsh screen ripgrep git
 $ sudo apt install tk-dev chromedriver libreoffice-draw   # optional stuff that is often good to have
 ```
